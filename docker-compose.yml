@@ -1,11 +1,10 @@
 services:
   sillytavern:
     build: ./
-    cap_add:
-      # Required for overlay mount
-      - CAP_SYS_ADMIN 
     ports:
       - "8080:8000/tcp"
     volumes:
-      # Webroot data directory; should be owned by UID 10000
-      - ./persist:/home/sillytavern/userdata:rw
+      # Data directories; should be owned by UID 10000
+      - ./persist/plugins:/home/node/app/plugins:rw
+      - ./persist/config:/home/node/app/config:rw
+      - ./persist/data:/home/node/app/data:rw
